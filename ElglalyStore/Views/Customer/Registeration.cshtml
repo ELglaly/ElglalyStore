@@ -1,0 +1,134 @@
+﻿@model Customer
+@{
+    Layout = "_Mylayout"; 
+}
+
+<head>
+
+    <div style="text-align:center; padding-top:50px ">
+        <h1> Elglaly Store  </h1>
+        <br />
+    </div>
+   
+</head>
+
+<body>
+    <div class="container">
+        
+        <div class="row">
+           
+            <div class="col-md-6 mb-5 mb-md-0">
+                <div class="p-3 p-lg-5 border bg-white">
+                    <div class="h3 mb-3 text-black" style="text-align:center">Register</div>
+                <br>
+                    <form asp-action="Save" asp-controller="Customer" style="border:medium" asp-valida>
+                <div class="form-group row">
+                <div class="col-md-6">
+                <label asp-for="fisrt_name" class="text-black"></label>
+                <span class="text-danger">*</span>
+                <br />
+                <input asp-for="fisrt_name" class="form-control"/>
+                <span asp-validation-for="fisrt_name"></span>
+                
+               </div>
+              <div class="col-md-6">
+                                <label asp-for="last_name" class="text-black"></label>
+                                <span class="text-danger">*</span>
+                                <br />
+                                <input asp-for="last_name" class="form-control" />
+                                <span asp-validation-for="last_name"></span>
+
+               </div>
+               </div>
+
+               <div class="form-group-row">
+
+                                <label asp-for="email" class="text-black"></label>
+                                <span class="text-danger">*</span>
+                                <br />
+                                <input asp-for="email" class="form-control" />
+                                <span asp-validation-for="email"></span>
+
+               </div>
+
+
+                            <div class="form-group-row">
+
+                                <label asp-for="phone_number" class="text-black"></label>
+                                <span class="text-danger">*</span>
+                                <br />
+                                <input asp-for="phone_number" class="form-control" />
+                                <span asp-validation-for="phone_number"></span>
+
+                            </div>
+
+
+                            <div class="form-group-row">
+
+                                <label asp-for="address" class="text-black"></label>
+                                
+                                <br />
+                                <input asp-for="address" class="form-control" />
+                                <span asp-validation-for="address"></span>
+
+                            </div>
+
+
+                            <div class="form-group-row">
+
+                                <label asp-for="birth_date" class="text-black"></label>
+                                <span class="text-danger">*</span>
+                                <br />
+                                <input asp-for="birth_date" class="form-control" />
+                                <span asp-validation-for="birth_date"></span>
+
+                            </div>
+
+
+
+                            <div class="form-group-row">
+
+                                <label asp-for="password" class="text-black"></label>
+                                <span class="text-danger">*</span>
+                                <br />
+                                <input asp-for="password" class="form-control" />
+                                <span asp-validation-for="password"></span>
+
+                            </div>
+
+
+                            @* <div class="form-group-row">
+
+                                <label asp-for="password" class="text-black"></label>
+                                <span class="text-danger">*</span>
+                                <br />
+                                <input asp-for="password" class="form-control" />
+                                <span asp-validation-for="password"></span>
+
+                            </div> *@
+
+                            <div>
+
+                            <span asp-validation-summary="Customer"></span>
+                            </div>
+                            <br />
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <button type="submit" class=" btn btn-secondary me-2">Create Account</button>
+                            </div>
+                            <div class="col-md-6">
+                                <a action="Login" class=" btn btn-secondary me-2">Login</a>
+                            </div>
+                        </div>
+
+                        
+            </form>
+         </div>
+        </div>
+        </div>
+           
+       </div>
+            
+    </div>
+</body>

@@ -1,0 +1,27 @@
+﻿@model Customer
+@{
+    Layout = "_Mylayout";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+	<div class="hero">
+		<div class="container">
+			<div class="row justify-content-between">
+				<div class="col-lg-5">
+					<div class="intro-excerpt">
+						<h1>High-Quality <br /><span clsas="d-block">Quick Shipping</span></h1>
+						<p class="mb-4">we bring you a curated selection of high-quality products, delivered with convenience and a seamless shopping experience. Explore a world of endless possibilities from the comfort of your home.</p>
+						<p><a href="/customer/Registeration" class="btn btn-secondary me-2">Shop Now</a><a asp-action="Registeration" asp-controller="Customer" class="btn btn-white-outline">Join Us</a></p>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="hero-img-wrap">
+						<img src="/images/couch.png" class="img-fluid">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

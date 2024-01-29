@@ -1,0 +1,47 @@
+﻿@model Customer
+<head>
+    <h1>Elglaly Store</h1>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+             <form>
+
+                 <div class="form-group row">
+                    <label>Login</label>
+                 </div>
+
+                <div class="form-group row">
+                    <label asp-for="email"></label>
+                    <span claee="text-danger">*</span>
+                    <input asp-for="email" class="form-control"/>
+                    <span asp-validation-for="email"></span>
+                 </div>
+
+                <div class="form-group row">
+                    <label asp-for="password"></label>
+                    <span claee="text-danger">*</span>
+                    <input asp-for="password" class="form-control" />
+@*                     <span asp-validation-for="password"></span> *@
+                </div>
+                <br />
+                <div class="form-group row">
+                    <button action="Login_valid" style="text-align:center" class=" btn btn-secondary me-2"> Login </button>
+                </div>
+ 
+
+                <div class="form-group row">
+                    <a action="Registeration" style="text-align:center ; color:cadetblue">Create Account</a>
+                </div>
+             </form>
+
+
+        </div>
+
+    </div>
+
+
+</body>
