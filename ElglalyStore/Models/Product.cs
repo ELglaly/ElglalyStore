@@ -30,7 +30,9 @@ namespace ElglalyStore.Models
         public int product_category_id { get; set;}
         public Category category { get; set;}
 
-
-
+        [Required]
+        [RegularExpression(@"[a-z]\.[jpj|png]")]
+        public string product_image {  get; set; }
+        
     }
 }

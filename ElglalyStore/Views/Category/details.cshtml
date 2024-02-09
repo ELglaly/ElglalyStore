@@ -1,0 +1,76 @@
+﻿@model List<Product>;
+@{
+    Layout = "_Mylayout";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Untree.co">
+    <link rel="shortcut icon" href="favicon.png">
+
+    <meta name="description" content="">
+    <meta name="keywords" content="bootstrap, bootstrap4">
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="/css/tiny-slider.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <style>
+        .container {
+            width: 80%;
+            margin: 100 px;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        /* Box styles */
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            color: #ffffff;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 8px;
+            margin: 20px;
+            padding-top: 50px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+            .box:hover {
+                background-color: antiquewhite;
+            }
+
+    </style>
+
+</head>
+
+
+<body>
+    <h1 style="text-align:center ;padding:50px">@ViewBag.cat</h1>
+    <div class="product-section">
+        <div class="row" style=" padding:50px">
+
+            @foreach (var prod in @Model)
+            {
+                <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                    <a class="product-item" asp-controller="cart" asp-action="Additem" asp-route-id="@prod.product_Id">
+                        <img src="images/product-1.png" class="img-fluid product-thumbnail" alt="@prod.product_name image">
+                        <h3 class="product-title">@prod.product_name</h3>
+                        <strong class="product-price">$@prod.product_price</strong>
+                        <span class="icon-cross">
+                            <img src="/images/cross.svg" class="img-fluid">
+                            
+                        </span>
+                    </a>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</body>

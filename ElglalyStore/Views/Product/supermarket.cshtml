@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "_Mylayout";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .container {
+            width: 80%;
+            margin: 100 px;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        /* Box styles */
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            color: #ffffff;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 8px;
+            margin: 20px;
+            padding-top: 50px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+            .box:hover {
+                background-color: orange;
+            }
+
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align:center ;padding:50px"></h1>
+    <div class="container">
+        <div class="row">
+
+
+            <a class="box">
+                <img src="/images/supermarket.png" alt="Supermarket Image" /> <br />
+                <label style="color:black">Supermarket</label>
+            </a>
+
+            <a class="box">
+                <img src="/images/icons8-fashion-50.png" alt="Fashion Image" /> <br />
+                <label style="color:black">Fashion</label>
+            </a>
+
+            <a class="box" href="/Customer/Login">
+                <img src="/images/icons8-home-50.png" alt="Home & Furniture  Image" /> <br />
+                <label style="color:black">Home & Furniture</label>
+            </a>
+
+            <a class="box">
+                <img src="/images/icons8-health-50.png" alt="Health & Beauty Image" /> <br />
+                <label style="color:black">Health & Beauty</label>
+            </a>
+
+            <a class="box">
+                <img src="/images/icons8-phones-64.png" alt="Phones & Tablets Image" /> <br />
+                <label style="color:black">Phones & Tablets</label>
+            </a>
+
+
+            <a class="box">
+                <img src="/images/icons8-television-64.png" alt="Televisions & Audio Image" /> <br />
+                <label style="color:black">Televisions & Audios</label>
+            </a>
+
+
+            <a class="box">
+                <img src="/images/icons8-basketball-player-50.png" alt="Sporting Goods Image" /> <br />
+                <label style="color:black">Sporting Goodss</label>
+            </a>
+        </div>
+
+    </div>
+</body>

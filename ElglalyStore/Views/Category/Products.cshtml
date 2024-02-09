@@ -1,0 +1,59 @@
+﻿@model List<Product>;
+@{
+    Layout = "_Mylayout";
+}
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    .container {
+        width: 80%;
+        margin: 100 px;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    /* Box styles */
+    .box {
+        width: 200px;
+        height: 200px;
+        background-color: white;
+        color: #ffffff;
+        text-align: center;
+        font-weight: bold;
+        border-radius: 8px;
+        margin: 20px;
+        padding-top: 50px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+        .box:hover {
+            background-color:antiquewhite;
+        }
+
+</style>
+
+</head>
+
+<body>
+    <h1 style="text-align:center ;padding:50px">Categories</h1>
+    <div class="container">
+        <div class="row">
+
+            @foreach(var prod in @Model)
+            {
+                 <a class="box">
+                    <img src="@prod.product_image" alt="@prod.product_name Image" /> <br />
+                    <label style="color:black" asp-for="@prod.product_name"></label>
+                </a> 
+            }
+
+           
+        </div>
+
+    </div>
+</body>

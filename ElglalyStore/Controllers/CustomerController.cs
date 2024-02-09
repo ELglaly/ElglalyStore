@@ -3,16 +3,17 @@ using ElglalyStore.Models;
 using ElglalyStore.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
-using AspNetCore;
+//using AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Identity.Client;
 using System.Reflection.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ElglalyStore.Controllers
 {
     public class CustomerController : Controller
     {
-        Appdbcontext db=new Appdbcontext();
+         Appdbcontext db=new Appdbcontext();
         public IActionResult Index()
         {
             return View();
@@ -24,6 +25,7 @@ namespace ElglalyStore.Controllers
         
         }
         [ValidateAntiForgeryToken]
+        [HttpPost]
         public IActionResult Save(Customer customer)
         {
 
@@ -59,23 +61,49 @@ namespace ElglalyStore.Controllers
          
         }
 
-        [HttpPost]
-        public IActionResult Login(string email,string password)
-        {
+        
+        public IActionResult Login()
+        { 
+                return View();
+        }
 
-            var res=db.Customers.FirstOrDefault(c=>c.email == email);
-            if ( res!=null)
+        [HttpPost]
+       // [ValidateAntiForgeryToken]
+        public IActionResult Login_valid(string password,string email)
             {
-                return View("Inex", Cart);
+            if(ModelState.IsValid)
+            {
+                var res=db.Customers.FirstOrDefault(c=>c.email == email);
+                if(res != null)
+                {
+                    if(res.password==password)
+                    {
+                        return View("Registeration");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("password", "Password does not Correct");
+                        return View("Login");
+                    }
+
+                }
+   
+                else
+                {
+                    ModelState.AddModelError("email", "Email does not exist try a valid one");
+                    return View("Login");
+                }
+
             }
             else
             {
+
                 return View("Login");
             }
 
-            
-
-           
         }
+
+       
+
     }
 }

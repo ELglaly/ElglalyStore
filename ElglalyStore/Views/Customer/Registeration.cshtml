@@ -21,8 +21,8 @@
                 <div class="p-3 p-lg-5 border bg-white">
                     <div class="h3 mb-3 text-black" style="text-align:center">Register</div>
                 <br>
-                    <form asp-action="Save" asp-controller="Customer" style="border:medium" asp-valida>
-                <div class="form-group row">
+                 <form asp-action="Save" asp-controller="Customer" style="border:medium" >
+                <div class="form-group row" >
                 <div class="col-md-6">
                 <label asp-for="fisrt_name" class="text-black"></label>
                 <span class="text-danger">*</span>
@@ -118,7 +118,7 @@
                                 <button type="submit" class=" btn btn-secondary me-2">Create Account</button>
                             </div>
                             <div class="col-md-6">
-                                <a action="Login" class=" btn btn-secondary me-2">Login</a>
+                                <a asp-controller="Customer" asp-action="Login" class=" btn btn-secondary me-2">Login</a>
                             </div>
                         </div>
 
@@ -129,6 +129,5 @@
         </div>
            
        </div>
-            
-    </div>
+           
 </body>

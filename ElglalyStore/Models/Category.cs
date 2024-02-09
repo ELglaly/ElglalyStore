@@ -11,5 +11,7 @@ namespace ElglalyStore.Models
         [Required,Column(TypeName= "nvarchar(100)")]
         [Display(Name ="Category Name")]
         public string category_name { get; set;}
+
+        //public string category_image { get; set; }
     }
 }

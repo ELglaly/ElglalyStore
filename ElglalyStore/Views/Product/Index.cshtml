@@ -1,0 +1,62 @@
+﻿@{
+    Layout = "_Mylayout";
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Normal state */
+        .change-color {
+            color: #000000; /* Default color */
+            text-decoration: none; /* Optional: Remove underline */
+        }
+
+            /* Hover state */
+            .change-color:hover {
+                color: #fbbb2c;
+            }
+
+        /* Additional styling for the grid */
+        .col-md-3 {
+            padding: 50px;
+        }
+
+        .col-md-3 {
+            padding: 50px;
+        }
+        #con{
+            background-color:#fffff;
+            padding:10px;
+            flex-direction:column;
+        }
+        .parent {
+            display:flex;
+            flex-direction:row;
+            align-items:center;
+            justify-content:flex-start;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-3">
+         
+                <h3 style="text-align:left">Categories</h3>
+                <a asp-action="index" asp-controller="customer" class="change-color" style="margin:10px">Supermarket </a><br />
+                <a asp-action="index" asp-controller="customer" class="change-color" style="margin:10px">Fashion </a><br />
+                <a asp-action="index" asp-controller="customer" class="change-color" style="margin:10px">Health & Beauty </a><br />
+                <a asp-action="index" asp-controller="customer" class="change-color" style="margin:10px">Phones & Tablets </a><br />
+                <a asp-action="index" asp-controller="customer" class="change-color" style="margin:10px">Home & Furniture </a><br />
+                <a asp-action="index" asp-controller="customer" class="change-color" style="margin:10px">Televisions & Audio </a><br />
+                <a asp-action="index" asp-controller="customer" class="change-color" style="margin:10px">Computing </a><br />
+                <a asp-action="index" asp-controller="customer" class="change-color" style="margin:10px">Sporting Goods </a><br />
+        </div>
+        <div class="col-md-3">
+
+            @RenderSection("product", required: true)
+        </div>
+    </div>
+</body>
+</html>

@@ -1,42 +1,45 @@
-﻿@model Customer
+﻿@{
+    Layout = "_Mylayout";
+}
+@model Customer
 <head>
-    <h1>Elglaly Store</h1>
+    <h1 style="text-align:center;padding:40px" >Elglaly Store</h1>
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="container" >
 
-        <div class="row">
-             <form>
-
+        <div class="col-md-6 mb-5 mb-md-0" >
+            <div class="p-3 p-lg-5 border bg-white">
+                <form asp-action="Login_valid">
                  <div class="form-group row">
-                    <label>Login</label>
+                    <h3 style="text-align:center">Login</h3>
                  </div>
-
-                <div class="form-group row">
-                    <label asp-for="email"></label>
-                    <span claee="text-danger">*</span>
+                <span asp-validation-summary="Customer"></span>
+                <div class="form-group-row">
+                    <label asp-for="email" class="text-black"></label>
+                     <span class="text-danger">*</span>
                     <input asp-for="email" class="form-control"/>
                     <span asp-validation-for="email"></span>
                  </div>
 
-                <div class="form-group row">
-                    <label asp-for="password"></label>
-                    <span claee="text-danger">*</span>
-                    <input asp-for="password" class="form-control" />
-@*                     <span asp-validation-for="password"></span> *@
+                <div class="form-group-row">
+                        <label asp-for="password" class="text-black"></label>
+                        <span class="text-danger">*</span>
+                    <input asp-for="password" class="form-control" />           
                 </div>
                 <br />
                 <div class="form-group row">
-                    <button action="Login_valid" style="text-align:center" class=" btn btn-secondary me-2"> Login </button>
+                    <button type="submit" style="text-align:center" class=" btn btn-secondary me-2"> Login </button>
                 </div>
  
 
                 <div class="form-group row">
-                    <a action="Registeration" style="text-align:center ; color:cadetblue">Create Account</a>
+                    <a asp-action="Registeration" style="text-align:center ; color:cadetblue">Create Account?</a>
                 </div>
              </form>
+            </div>
 
 
         </div>
