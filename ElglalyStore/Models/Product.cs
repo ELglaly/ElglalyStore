@@ -33,6 +33,5 @@ namespace ElglalyStore.Models
         [Required]
         [RegularExpression(@"[a-z]\.[jpj|png]")]
         public string product_image {  get; set; }
-        
     }
 }

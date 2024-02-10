@@ -63,7 +63,7 @@ namespace ElglalyStore.Models
 
         [Required(ErrorMessage ="Enter Birth Date")]
         [Display(Name ="Birth Date")]
-        [Range(typeof(DateTime), "1950-01-01", "2100-01-01", ErrorMessage = "Invalid date.")]
+       // [Range(typeof(DateTime), "1950-01-01", "2100-01-01", ErrorMessage = "Invalid date.")]
         [DataType(DataType.Date)]
         public DateTime birth_date { get; set; }
 

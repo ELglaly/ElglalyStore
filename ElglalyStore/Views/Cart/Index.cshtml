@@ -1,34 +1,98 @@
-﻿@{
+﻿@model List<CartModelView>;
+@{
     Layout = "_Mylayout";
 }
 
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Untree.co">
+    <link rel="shortcut icon" href="favicon.png">
+
+    <meta name="description" content="">
+    <meta name="keywords" content="bootstrap, bootstrap4">
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="/css/tiny-slider.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+
+    <style>
+        .container {
+            width: 80%;
+            margin: 100 px;
+            min-width:50px;
+            padding: 20px;
+        }
+
+        /* Box styles */
+        .box {
+       
+            text-align: center;
+            font-weight: bold;
+            margin: 20px;
+            text-underline-offset:unset;
+            
+            cursor: pointer;
+        }
+
+            .box:hover {
+                font-size:30px;
+            }
+
+    </style>
 </head>
+
 <body>
+    <h1 style="text-align:center ;padding-top:50px">Cart</h1>
+    <div class="container">
+       <div class="product-section" >
+        <div class="site-blocks-table">
+       <table class="table">
+            <thead>
+                <tr>
+                    <th class="product-thumbnail">Image</th>
+                    <th class="product-name">Product</th>
+                    <th class="product-price">Price</th>
+                    <th class="product-quantity">Quantity</th>
+                    <th class="product-total">Total</th>
+                    <th class="product-remove">Remove</th>
+                </tr>
+            </thead>
+           <tbody>
+            @foreach(var cart in @Model)
+            {
+                    <tr>
+                        <td class="product-thumbnail" style="text-align:center">@cart.Image</td>
+                            <td class="product-name" style="text-align:center">@cart.Name</td>
+                            <td class="product-price" style="text-align:center">$@cart.Price</td>
+                                <td>
+                                    <form asp-controller="Cart" asp-action="Edit" method="post" asp-route-id="@cart.Product_id" class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
+                                        <div class="form-group" >
+                                            <button type="submit" class="btn btn-outline-black decrease" >−</button>
+                                    </div>
 
-<div class="container" >
+                                        <input asp-for="@cart.Quantity" name="Quantity" class="form-control text-center quantity-amount" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                    <div class="input-group-append">
+                                            <button type="submit" class="btn btn-outline-black increase">+</button>
+                                    </div>
+                                </form>
+                                </td>
 
-    <div class="row-cols-1" style="margin:20px">
-   <table>
-       <thead>
-           <th>Product</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-            <th>Remove</th>
-       </thead>
+                                <td class="product-total" style="text-align:center">ُ$@cart.Total_Price</td>
+                                <td class="product-remove" style="text-align:center">
+                                    <a class="box" asp-action="Delete" asp-route-id="@cart.Product_id">X</a>
+                        </td>
+                    </tr>
 
-       <tbody>
+                }
+            </tbody>
 
+       </table>
 
-
-
-       </tbody>
-
-   </table>
-        </div>
-</div>
+            </div>
+   </div>
+  </div>
 </body>

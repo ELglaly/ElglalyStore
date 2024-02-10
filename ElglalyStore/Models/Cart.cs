@@ -6,25 +6,22 @@ namespace ElglalyStore.Models
     public class Cart
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int cart_Id { get; set; }
 
-        [Required,Display(Name = "Quantity")]
+        [Required, Display(Name = "Quantity")]
         public int Cart_quantity { get; set; }
 
+        [Required]
+        public int Cart_custmer_id { get; set; }
 
-        [Required,ForeignKey("customer")]
-        public int Cart_custmer_id { get; set;}
-
-
-
-        [Required,ForeignKey("product")]
+        [Required]
         public int Cart_product_id { get; set; }
 
-
-        [Required]
+        [ForeignKey("Cart_custmer_id")]
         public Customer customer { get; set; }
-        [Required]
-        public Product product { get; set;}
 
+        [ForeignKey("Cart_product_id")]
+        public Product product { get; set; }
     }
 }

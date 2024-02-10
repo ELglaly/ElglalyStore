@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ElglalyStore.Models
@@ -27,12 +28,12 @@ namespace ElglalyStore.Models
 
 
 
+
         [ForeignKey("payment")]
         public int order_payment_id { get; set; }
-        public Payment? payment { get; set; }
+        [Required(ErrorMessage = "Payment is required")]
+        public Payment payment { get; set; }
 
-
-
-
+     
     }
 }

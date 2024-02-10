@@ -25,18 +25,21 @@ namespace ElglalyStore.Migrations
             modelBuilder.Entity("ElglalyStore.Models.Cart", b =>
                 {
                     b.Property<int>("cart_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("cart_Id"));
+
+                    b.Property<int>("Cart_product_id")
                         .HasColumnType("int");
 
                     b.Property<int>("Cart_custmer_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Cart_product_id")
-                        .HasColumnType("int");
-
                     b.Property<int>("Cart_quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("cart_Id", "Cart_custmer_id");
+                    b.HasKey("cart_Id", "Cart_product_id");
 
                     b.HasIndex("Cart_custmer_id");
 

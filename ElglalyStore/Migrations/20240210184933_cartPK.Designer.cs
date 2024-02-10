@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElglalyStore.Migrations
 {
     [DbContext(typeof(Appdbcontext))]
-    [Migration("20240126093138_dbupdate")]
-    partial class dbupdate
+    [Migration("20240210184933_cartPK")]
+    partial class cartPK
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,18 +28,21 @@ namespace ElglalyStore.Migrations
             modelBuilder.Entity("ElglalyStore.Models.Cart", b =>
                 {
                     b.Property<int>("cart_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("cart_Id"));
+
+                    b.Property<int>("Cart_product_id")
                         .HasColumnType("int");
 
                     b.Property<int>("Cart_custmer_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Cart_product_id")
-                        .HasColumnType("int");
-
                     b.Property<int>("Cart_quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("cart_Id", "Cart_custmer_id");
+                    b.HasKey("cart_Id", "Cart_product_id");
 
                     b.HasIndex("Cart_custmer_id");
 
@@ -85,14 +88,17 @@ namespace ElglalyStore.Migrations
 
                     b.Property<string>("fisrt_name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("last_name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("password")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("phone_number")
@@ -199,12 +205,16 @@ namespace ElglalyStore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("product_image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("product_name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("product_price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("product_Id");
 

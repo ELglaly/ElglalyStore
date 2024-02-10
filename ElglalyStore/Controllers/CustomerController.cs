@@ -8,11 +8,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Identity.Client;
 using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
+using System.Web;
 namespace ElglalyStore.Controllers
 {
     public class CustomerController : Controller
     {
+       
          Appdbcontext db=new Appdbcontext();
         public IActionResult Index()
         {
@@ -71,14 +72,22 @@ namespace ElglalyStore.Controllers
        // [ValidateAntiForgeryToken]
         public IActionResult Login_valid(string password,string email)
             {
-            if(ModelState.IsValid)
+            var res=new Customer();
+            if (ModelState.IsValid)
             {
-                var res=db.Customers.FirstOrDefault(c=>c.email == email);
+                res=db.Customers.FirstOrDefault(c=>c.email == email);
                 if(res != null)
                 {
                     if(res.password==password)
                     {
-                        return View("Registeration");
+                        var User = new CookieOptions
+                        {
+                            // Set expiration time for the cookie (optional)
+                            Expires = DateTime.Now.AddDays(30), // Adjust the expiration as needed
+                            HttpOnly = true,
+                        };
+                        Response.Cookies.Append("UserInfo", $"{res.customer_Id}", User);
+                        return RedirectToAction("Index","Home");
                     }
                     else
                     {
