@@ -77,7 +77,7 @@ namespace ElglalyStore.Controllers
 
             }
             int id_category = db.Products.FirstOrDefault(c => c.product_Id == res.Cart_product_id).product_category_id;
-            return RedirectToAction("Details", "Category", new { id = id });
+            return RedirectToAction("Details", "Category", new { id = id_category });
 
         }
         [HttpPost]

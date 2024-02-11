@@ -59,6 +59,7 @@
          
             @foreach(var cat in @Model)
             {
+                
                 string sorce = @cat.category_name+".png";
                 <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0" style="padding-bottom:50px">
                     <a class="product-item" asp-action="Details" asp-route-id="@cat.category_Id">

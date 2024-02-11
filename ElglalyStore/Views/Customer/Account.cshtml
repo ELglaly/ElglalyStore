@@ -1,0 +1,198 @@
+﻿@model Customer
+@{
+    Layout = "_Mylayout";
+ }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Untree.co">
+    <link rel="shortcut icon" href="favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="/css/tiny-slider.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            color: #000;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 8px;
+            margin: 20px;
+            padding-top: 50px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+            .box:hover {
+                background-color: gray;
+            }
+
+        .sidebar {
+         
+            width: 21%;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 10px;
+            margin-top:10px;
+            margin-bottom:10px;
+
+        
+            left:0;
+            color: white;
+        }
+
+            .sidebar header {
+                text-align: center;
+               
+                color: dimgrey;
+                text-decoration-line:30px;
+                margin-bottom: 10px;
+            }
+
+            .sidebar ul {
+                padding: 10px;
+                list-style: none;
+            }
+
+            .sidebar li {
+
+                height: 50px;
+                width:90%;
+                margin-top: 10px;
+                background-color: white;    
+                list-style: none;
+                text-align: center;
+                display: inline-flex;
+            }
+
+            .sidebar li:hover {
+                
+                    background-color:darkgray ;
+                    border-radius: 10px;
+            }
+
+                .sidebar li .icon {
+                    display: inline-flex;
+                    align-items: center;
+                    min-width: 30px;
+                    font-size: 20px;
+                    color:dimgrey;
+                    padding:10px;
+                }
+
+                .sidebar li .text {
+                    display:inline-flex;
+                    min-width: 60px;
+                    font-size: 16px;
+                    color: dimgrey;
+                    text-decoration:none;
+
+                }
+
+        .search-container {
+            position: relative;
+            width: 80%;
+            margin: 10px auto;
+        }
+
+        .search-input {
+            width: calc(100% - 30px);
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .container{
+            width:79%;
+            padding:20px;
+        
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <!-- Your content here -->
+
+        <nav class="sidebar">
+            <header>
+                <h4>Elglaly Store<h4>
+            </header>
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search...">
+               
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fas fa-user"></i></span>
+                        <span class="text">Personal Data</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon"><i class="fas fa-shopping-cart" style=" display: inline-flex;"></i></div>
+                        <div class="text">Your Orders</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fas fa-credit-card"></i></span>
+                        <span class="text">Your Payments</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fas fa-headset"></i></span>
+                        <span class="text">Customer Service</span>
+                    </a>
+                </li>
+
+                <li>
+
+                    <a href="#">
+                       
+                        <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+                        <span class="text">Logout</span>
+                        
+                    </a>
+
+                </li>
+
+
+            </ul>
+        </nav>
+
+
+        <div class="container">
+           
+        </div>
+    </div>
+</body>
+</html>

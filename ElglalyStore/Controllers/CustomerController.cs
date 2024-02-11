@@ -112,6 +112,23 @@ namespace ElglalyStore.Controllers
 
         }
 
+
+        public IActionResult account(int id) {
+
+            var user = Request.Cookies["UserInfo"];
+          
+            if (user != null)
+            {
+                if(id==1)
+                {
+                    Customer res = db.Customers.FirstOrDefault(c => c.customer_Id == int.Parse(user));
+                    return View(res);
+                }
+
+            }
+            return RedirectToAction("Index","Home");
+        }
+
        
 
     }

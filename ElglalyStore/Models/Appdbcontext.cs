@@ -7,6 +7,7 @@ namespace ElglalyStore.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=DESKTOP-114872S;Initial Catalog=E-CommerceDB2; Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.EnableSensitiveDataLogging();
         }
         public DbSet<Cart> Carts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

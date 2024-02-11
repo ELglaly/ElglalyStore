@@ -1,6 +1,7 @@
 ﻿@model List<Product>;
 @{
     Layout = "_Mylayout";
+    string message = ViewBag.NoProductsMessage;
 }
 
 <head>
@@ -46,6 +47,15 @@
             }
 
     </style>
+
+    
+        @if (!string.IsNullOrEmpty(@message))
+        {
+                <script>
+                alert('@message');
+        </script>
+        }
+  
 
     
 </head>
