@@ -8,18 +8,17 @@ namespace ElglalyStore.Models
     {
         public Customer() {
 
-                 birth_date=DateTime.Now;
-                
+                 Birth_date=DateTime.Now;
                 }
         [Key]
-        public int customer_Id { get; set; }
+        public int Customer_Id { get; set; }
 
 
         [Required(ErrorMessage ="Required Feild")]
         [MinLength(3, ErrorMessage = "at least 3 charachters")]
         [MaxLength(20,ErrorMessage ="maximam 20 charachters")]
         [Display(Name = "First Name")]
-        public string fisrt_name { get; set; }
+        public string Fisrt_name { get; set; }
 
 
 
@@ -27,14 +26,14 @@ namespace ElglalyStore.Models
         [MinLength(3, ErrorMessage = "At least 3 charachters")]
         [MaxLength(20, ErrorMessage = "maximam 20 charachters")]
         [Display(Name = "Last Name")]
-        public string last_name { get; set; }
+        public string Last_name { get; set; }
 
 
 
         [DataType(DataType.EmailAddress)]
         [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",ErrorMessage = "Invalid email address.")]
         [Display(Name = "Email Address")]
-        public  string email {  get; set;}
+        public  string Email {  get; set;}
 
 
 
@@ -43,13 +42,13 @@ namespace ElglalyStore.Models
         [MaxLength(11)]
         [MinLength(11,ErrorMessage = "Must Be 11 Digits")]
         [Display(Name = "Phone Number")]
-        public string phone_number { get; set;}
+        public string Phone_number { get; set;}
 
 
 
         [Column(TypeName ="nvarchar(255)")]
         [Display(Name = "Address")]
-        public string? address { get; set;}
+        public string? Address { get; set;}
 
 
 
@@ -58,14 +57,19 @@ namespace ElglalyStore.Models
         [DataType(DataType.Password)]
         [Column(TypeName ="nvarchar(100)")]
         [MaxLength(100,ErrorMessage = "Maximam 100 charachters")]
-         public string password { get; set;}
+         public string Password { get; set;}
 
 
         [Required(ErrorMessage ="Enter Birth Date")]
         [Display(Name ="Birth Date")]
        // [Range(typeof(DateTime), "1950-01-01", "2100-01-01", ErrorMessage = "Invalid date.")]
         [DataType(DataType.Date)]
-        public DateTime birth_date { get; set; }
+        public DateTime Birth_date { get; set; }
+
+        
+        //[Display(Name = "Profile Photo")]
+        //[RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$", ErrorMessage = "Only Image files allowed.")]
+        //public string? Image { get; set; }
 
 
     }

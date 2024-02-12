@@ -1,7 +1,7 @@
-﻿@model Customer
+﻿
 @{
     Layout = "_Mylayout";
- }
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,25 +42,21 @@
             }
 
         .sidebar {
-         
             width: 21%;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             padding: 10px;
-            margin-top:10px;
-            margin-bottom:10px;
-
-        
-            left:0;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            left: 0;
             color: white;
         }
 
             .sidebar header {
                 text-align: center;
-               
                 color: dimgrey;
-                text-decoration-line:30px;
+                text-decoration-line: 30px;
                 margin-bottom: 10px;
             }
 
@@ -70,38 +66,35 @@
             }
 
             .sidebar li {
-
                 height: 50px;
-                width:90%;
+                width: 90%;
                 margin-top: 10px;
-                background-color: white;    
+                background-color: white;
                 list-style: none;
                 text-align: center;
                 display: inline-flex;
             }
 
-            .sidebar li:hover {
-                
-                    background-color:darkgray ;
+                .sidebar li:hover {
+                    background-color: darkgray;
                     border-radius: 10px;
-            }
+                }
 
                 .sidebar li .icon {
                     display: inline-flex;
                     align-items: center;
                     min-width: 30px;
                     font-size: 20px;
-                    color:dimgrey;
-                    padding:10px;
+                    color: dimgrey;
+                    padding: 10px;
                 }
 
                 .sidebar li .text {
-                    display:inline-flex;
+                    display: inline-flex;
                     min-width: 60px;
                     font-size: 16px;
                     color: dimgrey;
-                    text-decoration:none;
-
+                    text-decoration: none;
                 }
 
         .search-container {
@@ -126,10 +119,9 @@
             cursor: pointer;
         }
 
-        .container{
-            width:79%;
-            padding:20px;
-        
+        .container {
+            width: 79%;
+            padding: 20px;
         }
     </style>
 </head>
@@ -145,11 +137,11 @@
             <div class="search-container">
                 <i class="fas fa-search search-icon"></i>
                 <input type="text" class="search-input" placeholder="Search...">
-               
+
             </div>
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="#" onclick="GetData()" >
                         <span class="icon"><i class="fas fa-user"></i></span>
                         <span class="text">Personal Data</span>
                     </a>
@@ -166,7 +158,7 @@
                         <span class="text">Your Payments</span>
                     </a>
                 </li>
-                
+
                 <li>
                     <a href="#">
                         <span class="icon"><i class="fas fa-headset"></i></span>
@@ -176,11 +168,11 @@
 
                 <li>
 
-                    <a href="#">
-                       
+                    <a asp-asp-controller="customer" asp-action="logout">
+
                         <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
                         <span class="text">Logout</span>
-                        
+
                     </a>
 
                 </li>
@@ -189,10 +181,34 @@
             </ul>
         </nav>
 
+        <div class="container" id="content">
 
-        <div class="container">
-           
         </div>
+
     </div>
+
+    @section Scripts {
+
+        <script>
+            function GetData() {
+                console.log();
+                event.preventDefault();
+
+                $.ajax({
+                    url: "/Customer/Profile", // Use the correct URL format
+                    // Pass the id parameter using the data option
+                    success: function (res) {
+                        console.log(res);
+                        document.getElementById("content").innerHTML = res;
+                    }
+                });
+            }
+
+        </script>
+
+
+    }
+
+   
 </body>
 </html>

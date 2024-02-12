@@ -33,13 +33,13 @@ namespace ElglalyStore.Controllers
 
             if (ModelState.IsValid)
             {
-                if (db.Customers.Where(p=>p.phone_number==customer.phone_number).FirstOrDefault() != null)
+                if (db.Customers.Where(p=>p.Phone_number==customer.Phone_number).FirstOrDefault() != null)
 
                 {
                     ModelState.AddModelError("phone_number", "This Phone Number is already registered.");
                         return View("Registeration",customer);
                 }
-                else if (db.Customers.Where(p => p.email == customer.email).FirstOrDefault() != null)
+                else if (db.Customers.Where(p => p.Email == customer.Email).FirstOrDefault() != null)
 
                 {
 
@@ -75,10 +75,10 @@ namespace ElglalyStore.Controllers
             var res=new Customer();
             if (ModelState.IsValid)
             {
-                res=db.Customers.FirstOrDefault(c=>c.email == email);
+                res=db.Customers.FirstOrDefault(c=>c.Email == email);
                 if(res != null)
                 {
-                    if(res.password==password)
+                    if(res.Password==password)
                     {
                         var User = new CookieOptions
                         {
@@ -86,7 +86,7 @@ namespace ElglalyStore.Controllers
                             Expires = DateTime.Now.AddDays(30), // Adjust the expiration as needed
                             HttpOnly = true,
                         };
-                        Response.Cookies.Append("UserInfo", $"{res.customer_Id}", User);
+                        Response.Cookies.Append("UserInfo", $"{res.Customer_Id}", User);
                         return RedirectToAction("Index","Home");
                     }
                     else
@@ -113,23 +113,60 @@ namespace ElglalyStore.Controllers
         }
 
 
-        public IActionResult account(int id) {
+        public IActionResult account() {
 
             var user = Request.Cookies["UserInfo"];
           
             if (user != null)
             {
-                if(id==1)
-                {
-                    Customer res = db.Customers.FirstOrDefault(c => c.customer_Id == int.Parse(user));
-                    return View(res);
-                }
 
+                    return View();
             }
             return RedirectToAction("Index","Home");
         }
+        public IActionResult Profile()
+        {
+            var user = Request.Cookies["UserInfo"];
+            Customer cust=db.Customers.FirstOrDefault(c=>c.Customer_Id==int.Parse(user));
+            return PartialView("_EditProfilePartial", cust);
+        }
 
-       
+        [HttpPost]
+        public IActionResult Edit(Customer customer)
+        {
+            if(ModelState.IsValid)
+            {
+                
+                db.Customers.Update(customer);
+                db.SaveChanges();
+                
+                return RedirectToAction("Account", "Customer");
+
+            }
+            else
+            {
+              
+                return RedirectToAction("Account", "Customer");
+    
+            }
+
+
+        }
+        public IActionResult logout()
+        {
+
+            var user = Request.Cookies["UserInfo"];
+
+            if (user != null)
+            {
+                Response.Cookies.Delete("UserInfo");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+
 
     }
 }

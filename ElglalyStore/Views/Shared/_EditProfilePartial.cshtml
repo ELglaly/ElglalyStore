@@ -1,0 +1,124 @@
+﻿@model Customer
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/tiny-slider.js"></script>
+<script src="js/custom.js"></script>
+<script src="~/lib/jquery/dist/jquery.js">  </script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js">  </script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+ <div class="row">
+
+    <section class="main">
+        <div class="profile-card">
+           
+            <div class="image">
+                
+                <img src="/images/profile.png" alt="" class="profile-pic">
+        
+            </div>
+            <div class="data">
+                <h2 style="padding-top:10px ;color:white">@Model.Fisrt_name @Model.Last_name</h2>
+                <span style="color:dodgerblue;padding:1px">@Model.Email</span>
+            </div>
+         </div>
+       </section>
+    <div class="col-md-6 mb-5 mb-md-0" style="width:70%;padding-top:30px;">
+                <div class="p-3 p-lg-5 border bg-white" style="width:90%">
+                    <div class="h3 mb-3 text-black" style="text-align:center">Profile</div>
+                    <br>
+                    <form asp-action="Edit" asp-controller="Customer" style="border:medium">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label asp-for="Fisrt_name" class="text-black"></label>
+                                <span class="text-danger">*</span>
+                                <br />
+                                <input asp-for="Fisrt_name" class="form-control" />
+                                <span asp-validation-for="Fisrt_name"></span>
+
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Last_name" class="text-black"></label>
+                                <span class="text-danger">*</span>
+                                <br />
+                                <input asp-for="Last_name" class="form-control" />
+                                <span asp-validation-for="Last_name"></span>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group-row">
+
+                            <label asp-for="Email" class="text-black"></label>
+                            <span class="text-danger">*</span>
+                            <br />
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email"></span>
+
+                        </div>
+
+
+                        <div class="form-group-row">
+
+                            <label asp-for="Phone_number" class="text-black"></label>
+                            <span class="text-danger">*</span>
+                            <br />
+                            <input asp-for="Phone_number" class="form-control" />
+                            <span asp-validation-for="Phone_number"></span>
+
+                        </div>
+
+
+                        <div class="form-group-row">
+
+                            <label asp-for="Address" class="text-black"></label>
+
+                            <br />
+                            <input asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address"></span>
+
+                        </div>
+
+
+                        <div class="form-group-row">
+
+                            <label asp-for="Birth_date" class="text-black"></label>
+                            <span class="text-danger">*</span>
+                            <br />
+                            <input asp-for="Birth_date" class="form-control" />
+                            <span asp-validation-for="Birth_date"></span>
+
+                        </div>
+
+
+
+                        <div class="form-group-row">
+
+                            <label asp-for="Password" class="text-black"></label>
+                            <span class="text-danger">*</span>
+                            <br />
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password"></span>
+
+                        </div>
+
+                        <div>
+
+                            <span asp-validation-summary="Customer"></span>
+                        </div>
+                        <br />
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <button type="submit" class=" btn btn-secondary me-2">Save Changes </button>
+                            </div>
+                           <div class="col-md-6">
+                                 <button type="submit" asp-action="account" class=" btn btn-secondary me-2">Discard </button>
+                            </div>
+       
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+

@@ -18,7 +18,7 @@ namespace ElglalyStore.Data
                 mailMessage.Subject = "Authentication Code for Password Change - CCMS";
                 mailMessage.From = new MailAddress(email);
                 mailMessage.To.Add(new MailAddress(email));
-                mailMessage.Body = $"Dear {customer.fisrt_name},\n\n" +
+                mailMessage.Body = $"Dear {customer.Fisrt_name},\n\n" +
                        $"We hope this email finds you well. Your request to change the password for your account on the CCMS app has been received.\n\n" +
                        $"To proceed with the password change, please use the following authentication code:\n\n" +
 
