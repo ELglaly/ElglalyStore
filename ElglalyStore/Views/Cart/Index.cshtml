@@ -1,6 +1,7 @@
 ﻿@model List<CartModelView>;
 @{
     Layout = "_Mylayout";
+  // string price_before = ;
 }
 
 
@@ -46,11 +47,12 @@
 </head>
 
 <body>
+    <div>
     <h1 style="text-align:center ;padding-top:50px">Cart</h1>
     <div class="container">
        <div class="product-section" >
         <div class="site-blocks-table">
-       <table class="table">
+       <table class="table" style="padding-bottom:30px">
             <thead>
                 <tr>
                     <th class="product-thumbnail">Image</th>
@@ -69,21 +71,25 @@
                             <td class="product-name" style="text-align:center">@cart.Name</td>
                             <td class="product-price" style="text-align:center">$@cart.Price</td>
                                 <td>
-                                    <form asp-controller="Cart" asp-action="Edit" method="post" asp-route-id="@cart.Product_id" class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
-                                        <div class="form-group" >
-                                            <button type="submit" class="btn btn-outline-black decrease" >−</button>
-                                    </div>
+                                    <div class="input-group mb-3 d-flex align-items-center quantity-container">
 
-                                        <input asp-for="@cart.Quantity" name="Quantity" class="form-control text-center quantity-amount" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                            <button type="submit" class="btn btn-outline-black increase">+</button>
+                                        <div class="form-group">
+                                            <button type="button" onclick="modify(@cart.Product_id , '-2')" class=" btn btn-outline-black decrease">−</button>
+                                        </div>
+
+
+                                        <input value="@cart.Quantity" id="qunt @cart.Product_id" onchange="modify(@cart.Product_id ,'-2')" class="form-control text-center quantity-amount" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" >
+                                        <div class="input-group-append">
+                                            <button onclick="modify(@cart.Product_id , '-1')" type="button" class="btn btn-outline-black increase">+</button>
+                                        </div>
                                     </div>
-                                </form>
+                                    
+                               
                                 </td>
 
-                                <td class="product-total" style="text-align:center">ُ$@cart.Total_Price</td>
+                                <td class="product-total" style="text-align:center"><div id="price @cart.Product_id">$@cart.Total_Price</div> </td>
                                 <td class="product-remove" style="text-align:center">
-                                    <a class="box" asp-action="Delete" asp-route-id="@cart.Product_id">X</a>
+                                <a class="box" asp-action="Delete" asp-route-id="@cart.Product_id">X</a>
                         </td>
                     </tr>
 
@@ -92,7 +98,141 @@
 
        </table>
 
-            </div>
+                <div class="row" style="padding-top:50px; padding-bottom:50px">
+                    <div class="col-md-6">
+                        <div class="row mb-5">
+                                 <div class="col-md-6">
+                                <a asp-action="index" asp-controller="Category" class="btn btn-outline-black btn-sm btn-block">Continue Shopping</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="text-black h4" for="coupon">Coupon</label>
+                                <p id="Coupon_error">Enter your coupon code if you have one.</p>
+                            </div>
+                            <div class="col-md-8 mb-3 mb-md-0">
+                                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
+                            </div>
+                            <div class="col-md-4">
+                                    <button onclick="Coupon()" class="btn btn-black">Apply Coupon</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-5">
+                        <div class="row justify-content-end">
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-12 text-right border-bottom mb-5">
+                                        <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-5">
+                                    <div class="col-md-6">
+                                        <span class="text-black">Total</span>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                            <strong id="price_before" class="text-black">$@decimal.Parse(TempData.Peek("price").ToString())</strong>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                            <a class="btn btn-black btn-lg py-3 btn-block" asp-action="checkout" asp-controller="Cart">Proceed To Checkout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
    </div>
   </div>
+
+    </div>
+
+    @section Scripts {
+        <script>
+            function modify(id, Quantity) {
+                console.log(id, Quantity);
+                event.preventDefault();
+
+                if (Quantity == -1) {
+                    
+                    
+                   
+                    Quantity = document.getElementById("qunt " + id).value;
+                     Quantity++;
+                   // document.getElementById("qunt " + id).value = Quantity;
+                  
+                }
+                else if (Quantity == -2) {
+                   
+                    Quantity = document.getElementById("qunt " + id).value;
+                    Quantity--;
+                   
+                
+                }
+                if (Quantity < 1) {
+                    Quantity = 1;
+                    document.getElementById("qunt " + id).value=1;
+                }
+                $.ajax({
+                        url: "/Cart/Edit",
+                        data: { id: id, Quantity: Quantity }, // Correct syntax for passing data
+                        type: "POST", // Specify the HTTP method (POST in this case)
+                        success: function (res) {
+                            console.log(res);
+
+                            //var document.getElementById("price") = res;
+
+                        document.getElementById("price " + id).innerHTML = "$" + res.price;
+                        document.getElementById("price_before").innerHTML = "$" + res.price2;
+
+                            // Assuming res[1] contains the updated total price
+                            // Assuming res[0] contains the updated quantity
+                        },
+                        error: function (error) {
+                            console.error("Error:", error);
+                        }
+
+
+                    });
+
+              
+            }
+
+
+            function Coupon() {
+
+                var coupon = document.getElementById("coupon").value;
+
+                $.ajax(
+                    {
+
+
+                        url: "/Cart/Apply_Coupon",
+                        data: { coupon: coupon }, // Correct syntax for passing data
+                        type: "POST", // Specify the HTTP method (POST in this case)
+                        success: function (res) {
+                            console.log(res);
+
+                            document.getElementById("Coupon_error").innerHTML = res.message;
+                            document.getElementById("price_before").innerHTML = "$" + res.price;
+                        },
+                        error: function (error) {
+                            console.error("Error:", error);
+                        }
+
+
+                    }
+                );
+            }
+
+
+           
+           
+        </script>
+    }
+
 </body>

@@ -1,12 +1,18 @@
-﻿@model Customer
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/tiny-slider.js"></script>
-<script src="js/custom.js"></script>
-<script src="~/lib/jquery/dist/jquery.js">  </script>
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js">  </script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+﻿@model Customer;
 
- <div class="row">
+
+
+<body>
+
+    
+    <script src="~/lib/jquery/dist/jquery.js">  </script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js">  </script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/tiny-slider.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+<div class="row">
 
     <section class="main">
         <div class="profile-card">
@@ -17,17 +23,17 @@
         
             </div>
             <div class="data">
-                <h2 style="padding-top:10px ;color:white">@Model.Fisrt_name @Model.Last_name</h2>
-                <span style="color:dodgerblue;padding:1px">@Model.Email</span>
+                <h4 style="color:white">@Model.Fisrt_name @Model.Last_name</h4>
+                <span style="color:dodgerblue">@Model.Email</span>
             </div>
          </div>
        </section>
     <div class="col-md-6 mb-5 mb-md-0" style="width:70%;padding-top:30px;">
                 <div class="p-3 p-lg-5 border bg-white" style="width:90%">
                     <div class="h3 mb-3 text-black" style="text-align:center">Profile</div>
-                    <br>
-                    <form asp-action="Edit" asp-controller="Customer" style="border:medium">
-                        <div class="form-group row">
+                    <br />
+            <form onclick="showHint(this)" style="border:medium" id="myForm">
+                      <div class="form-group row">
                             <div class="col-md-6">
                                 <label asp-for="Fisrt_name" class="text-black"></label>
                                 <span class="text-danger">*</span>
@@ -107,16 +113,14 @@
                         </div>
                         <br />
 
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <button type="submit" class=" btn btn-secondary me-2">Save Changes </button>
-                            </div>
-                           <div class="col-md-6">
-                                 <button type="submit" asp-action="account" class=" btn btn-secondary me-2">Discard </button>
-                            </div>
-       
-                        </div>
-
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-secondary me-2">Save Changes</button>
+                    </div>
+                    <div class="col-md-6">
+                        <a type="button" asp-action="account" class="btn btn-secondary me-2">Discard</a>
+                    </div>
+                </div>
                     </form>
                 </div>
             </div>

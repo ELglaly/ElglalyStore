@@ -1,4 +1,4 @@
-﻿
+﻿@model Customer;
 @{
     Layout = "_Mylayout";
 }
@@ -15,6 +15,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="/css/tiny-slider.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
+
 
     <style>
         body {
@@ -130,84 +131,66 @@
     <div class="row">
         <!-- Your content here -->
 
-        <nav class="sidebar">
-            <header>
-                <h4>Elglaly Store<h4>
-            </header>
-            <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-input" placeholder="Search...">
-
-            </div>
-            <ul>
-                <li>
-                    <a href="#" onclick="GetData()" >
-                        <span class="icon"><i class="fas fa-user"></i></span>
-                        <span class="text">Personal Data</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon"><i class="fas fa-shopping-cart" style=" display: inline-flex;"></i></div>
-                        <div class="text">Your Orders</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fas fa-credit-card"></i></span>
-                        <span class="text">Your Payments</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fas fa-headset"></i></span>
-                        <span class="text">Customer Service</span>
-                    </a>
-                </li>
-
-                <li>
-
-                    <a asp-asp-controller="customer" asp-action="logout">
-
-                        <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
-                        <span class="text">Logout</span>
-
-                    </a>
-
-                </li>
-
-
-            </ul>
-        </nav>
+       
 
         <div class="container" id="content">
 
         </div>
 
     </div>
+       
 
     @section Scripts {
 
         <script>
-            function GetData() {
-                console.log();
+
+            
+            function GetData(id) {
+                console.log(id);
                 event.preventDefault();
 
                 $.ajax({
-                    url: "/Customer/Profile", // Use the correct URL format
-                    // Pass the id parameter using the data option
+                    url: "/Customer/Profile",
+                    data: { id: id }, // Correct syntax for passing data
+                    type: "GET",   
+                   
+                    // Specify the HTTP method (GET in this case)
                     success: function (res) {
                         console.log(res);
                         document.getElementById("content").innerHTML = res;
+                    },
+                    error: function (error) {
+                        console.error("Error:", error);
                     }
                 });
             }
 
+                function showHint(str) {
+
+                    $.ajax({
+                        url: "/Customer/Edit",
+                        data: { id: str }, // Correct syntax for passing data
+                        type: "Post",
+
+                        // Specify the HTTP method (GET in this case)
+                        success: function (res) {
+                            console.load(res);
+                            $("#myForm").load(res);
+                         //   document.getElementById("content").innerHTML = res;
+                        },
+                        error: function (error) {
+                            console.error("Error:", error);
+                        }
+                    });
+                    
+                       
+                  
+                }
+
         </script>
 
-
     }
+
 
    
 </body>

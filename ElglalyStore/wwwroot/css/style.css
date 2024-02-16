@@ -665,7 +665,11 @@ textarea {
   .site-blocks-table .product-thumbnail {
     width: 200px; }
   .site-blocks-table .btn {
-    padding: 2px 10px; }
+     
+    padding: 2px 10px; 
+
+
+  }
   .site-blocks-table thead th {
     padding: 30px;
     text-align: center;
@@ -680,11 +684,10 @@ textarea {
     color: rgba(0, 0, 0, 0.8); }
   .site-blocks-table tbody tr:first-child td {
     border-top: 1px solid #3b5d50 !important; }
-  .site-blocks-table .btn {
-    background: none !important;
-    color: #000000;
-    border: none;
-    height: auto !important; }
+    .site-blocks-table .btn {
+        height: auto !important;
+       
+    }
 
 .site-block-order-table th {
   border-top: none !important;
@@ -713,14 +716,14 @@ textarea {
 
 .main {
     width: 30%;
-    padding: 20px;
+    padding: 10px;
 }
 
 .profile-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 400px;
+    min-width:100px;
     width: 100%;
     border-radius: 25px;
     padding: 30px;
@@ -731,10 +734,8 @@ textarea {
 
 
 .image {
+    display: flex;
     position: relative;
-    height: 150px;
-    width: 150px;
-  
 }
 
     .image .profile-pic {
@@ -745,3 +746,9 @@ textarea {
         box-shadow: 0 5px 20px rgba(0,0,0,0.4);
         background-color: white !important;
     }
+.data {
+    position: relative;
+    padding: 5px;
+    object-fit: cover;
+   
+}

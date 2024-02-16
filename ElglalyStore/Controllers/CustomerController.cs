@@ -116,42 +116,43 @@ namespace ElglalyStore.Controllers
         public IActionResult account() {
 
             var user = Request.Cookies["UserInfo"];
-          
             if (user != null)
             {
-
-                    return View();
+                    return View(db.Customers.FirstOrDefault(c=>c.Customer_Id==int.Parse(user)));
             }
             return RedirectToAction("Index","Home");
         }
-        public IActionResult Profile()
+        [HttpGet]
+        public IActionResult Profile(int id)
         {
-            var user = Request.Cookies["UserInfo"];
-            Customer cust=db.Customers.FirstOrDefault(c=>c.Customer_Id==int.Parse(user));
+
+
+            Customer cust=db.Customers.FirstOrDefault(c=>c.Customer_Id==id);
             return PartialView("_EditProfilePartial", cust);
         }
 
         [HttpPost]
-        public IActionResult Edit(Customer customer)
+        public IActionResult Edit(Customer NewCut)
         {
-            if(ModelState.IsValid)
+             if (ModelState.IsValid)
             {
-                
-                db.Customers.Update(customer);
+
+                Customer cut = db.Customers.FirstOrDefault(c => c.Customer_Id == NewCut.Customer_Id);
+
+                cut.Fisrt_name = NewCut.Fisrt_name;
+                cut.Address = NewCut.Address;
+                cut.Phone_number = NewCut.Phone_number;
+
+                db.Customers.Update(cut);
                 db.SaveChanges();
-                
-                return RedirectToAction("Account", "Customer");
+                return PartialView("_EditProfilePartial", cut);
 
             }
-            else
-            {
-              
-                return RedirectToAction("Account", "Customer");
-    
-            }
 
+            return PartialView("_EditProfilePartial", NewCut);
 
         }
+
         public IActionResult logout()
         {
 
