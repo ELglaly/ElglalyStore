@@ -1,8 +1,13 @@
-﻿@model List<CartModelView>;
+﻿@model CheckoutModelView;
 @{
 	Layout = "_Mylayout";
 }
 
+
+<head>
+
+	
+</head>
 <body>
 
 	<div class="untree_co-section">
@@ -14,67 +19,77 @@
 					</div>
 				</div>
 			</div>
+			<form method="post">
 			<div class="row">
 				<div class="col-md-6 mb-5 mb-md-0">
 					<h2 class="h3 mb-3 text-black">Billing Details</h2>
+					
 					<div class="p-3 p-lg-5 border bg-white">
-
+						
+						<div asp-validation-summary="All" class="text-danger"></div>
 						<div class="form-group row">
 							<div class="col-md-6">
-								<label for="c_fname" class="text-black">First Name <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" id="c_fname" name="c_fname">
+									
+									<label asp-for="Fisrt_name" class="text-black">First Name <span class="text-danger">*</span></label>
+									<input asp-for="Fisrt_name" class="form-control" />
+									<span style="color:red" asp-validation-for="Fisrt_name"></span>
+									
 							</div>
 							<div class="col-md-6">
-								<label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" id="c_lname" name="c_lname">
+									<label asp-for="Last_name"  class="text-black">Last Name <span class="text-danger">*</span></label>
+									<input asp-for="Last_name" type="text" class="form-control" >
+									<span style="color:red" asp-validation-for="Last_name"></span>
 							</div>
 						</div>
+
 
 						<div class="form-group row">
 							<div class="col-md-12">
-								<label for="c_companyname" class="text-black">Company Name </label>
-								<input type="text" class="form-control" id="c_companyname" name="c_companyname">
+									<label asp-for="@Model.Address" f class="text-black">Address <span class="text-danger">*</span></label>
+									<input asp-for="@Model.Address" type="text" class="form-control" placeholder="Street address">
+									<span style="color:red" asp-validation-for="Address"></span>
 							</div>
 						</div>
 
-						<div class="form-group row">
-							<div class="col-md-12">
-								<label for="c_address" class="text-black">Address <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" id="c_address" name="c_address" placeholder="Street address">
-							</div>
-						</div>
 
-						<div class="form-group mt-3">
-							<input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
-						</div>
 
 						<div class="form-group row">
 							<div class="col-md-6">
-								<label for="c_state_country" class="text-black">State / Country <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" id="c_state_country" name="c_state_country">
+								<label asp-for="@Model.City"  class="text-black">City<span class="text-danger">*</span></label>
+							    <input asp-for="@Model.City" type="text" class="form-control"  >
+									<span style="color:red" asp-validation-for="City"></span>
+								
 							</div>
 							<div class="col-md-6">
-								<label for="c_postal_zip" class="text-black">Posta / Zip <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" id="c_postal_zip" name="c_postal_zip">
+									<label asp-for="@Model.Posta_code" class="text-black">Posta / Zip <span class="text-danger">*</span></label>
+									<input asp-for="@Model.Posta_code" type="text" class="form-control" >
+									<span style="color:red" asp-validation-for="@Model.Posta_code"></span>
 							</div>
 						</div>
 
 						<div class="form-group row mb-5">
 							<div class="col-md-6">
-								<label for="c_email_address" class="text-black">Email Address <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" id="c_email_address" name="c_email_address">
+									<label asp-for="@Model.Email"  class="text-black">Email Address <span class="text-danger">*</span></label>
+									<input asp-for="@Model.Email" type="text" class="form-control" >
+									<span style="color:red" asp-validation-for="@Model.Email"></span>
 							</div>
 							<div class="col-md-6">
-								<label for="c_phone" class="text-black">Phone <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="Phone Number">
+									<label asp-for="@Model.Phone_number" class="text-black">Phone <span class="text-danger">*</span></label>
+									<input asp-for="@Model.Phone_number" type="text" class="form-control"  placeholder="Phone Number">
+									<span style="color:red" asp-validation-for="Phone_number"></span>
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="c_order_notes" class="text-black">Order Notes</label>
-							<textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
-						</div>
 
+						<div class="form-group">
+								<label asp-for="@Model.Note"  class="text-black">Order Notes</label>
+								<textarea asp-for="@Model.Note" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
+								<span style="color:red" asp-validation-for="Note"></span>
+						</div>
+						
 					</div>
+
+						
+			
 				</div>
 				<div class="col-md-6">
 
@@ -85,9 +100,9 @@
 
 								<label for="c_code" class="text-black mb-3">Enter your coupon code if you have one</label>
 								<div class="input-group w-75 couponcode-wrap">
-									<input type="text" class="form-control me-2" id="c_code" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2">
+									<input type="text" class="form-control me-2" id="coupon" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2">
 									<div class="input-group-append">
-										<button class="btn btn-black btn-sm" type="button" id="button-addon2">Apply</button>
+										<button onclick="Coupon()" class="btn btn-black">Apply</button>
 									</div>
 								</div>
 
@@ -107,7 +122,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										@foreach (var cart in @Model)
+										@foreach (var cart in @Model.CartView)
 										{
 											<tr>
 												<td>@cart.Name<strong class="mx-2">x</strong>@cart.Quantity</td>
@@ -117,7 +132,7 @@
 
 										<tr>
 											<td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-											<td class="text-black font-weight-bold"><strong>$@decimal.Parse(TempData.Peek("price").ToString()) </strong></td>
+											<td class="text-black font-weight-bold"><strong>$ @Model.total_price </strong></td>
 										</tr>
 
 									</tbody>
@@ -153,18 +168,41 @@
 									</div>
 								</div>
 
-								<div class="form-group">
-									<button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Place Order</button>
-								</div>
+									<div class="form-group">
+										<button type="submit" class="btn btn-black btn-lg py-3 btn-block" asp-action="Orders" asp-controller="Order">Place Order</button>
+									</div>
 
 							</div>
 						</div>
 					</div>
-
+					
 				</div>
 			</div>
+					
+			</form>
+
+
 			<!-- </form> -->
 		</div>
 	</div>
 
+	 @section Scripts {
+
+		 <script>
+
+			 function Order_item() {
+
+
+
+				 $.ajax(
+					 {
+
+					 }
+				 )
+			 }
+		 </script>
+
+	 }
+
+	 
 </body>

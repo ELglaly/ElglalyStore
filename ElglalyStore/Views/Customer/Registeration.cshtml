@@ -10,6 +10,10 @@
         <br />
     </div>
    
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/tiny-slider.js"></script>
+    <script src="/js/custom.js"></script>
+
 </head>
 
 <body>
@@ -24,9 +28,8 @@
                  <form asp-action="Save" asp-controller="Customer" style="border:medium" >
                 <div class="form-group row" >
                 <div class="col-md-6">
-                <label asp-for="Fisrt_name" class="text-black"></label>
-                <span class="text-danger">*</span>
-                <br />
+                <label asp-for="Fisrt_name" class="text-black"><span class="text-danger">*</span></label>
+           
                 <input asp-for="Fisrt_name" class="form-control"/>
                 <span asp-validation-for="Fisrt_name"></span>
                 
@@ -118,5 +121,9 @@
         </div>
            
        </div>
-           
+
+    <script src="~/lib/jquery/dist/jquery.js">  </script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js">  </script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
 </body>

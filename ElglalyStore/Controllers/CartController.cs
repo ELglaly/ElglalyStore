@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+using Microsoft.Identity.Client;
 
 namespace ElglalyStore.Controllers
 {
@@ -21,7 +22,7 @@ namespace ElglalyStore.Controllers
                 List<CartModelView> users = new List<CartModelView>();
                 decimal price_before_Coupon = 0;
 
-               var  carts=db.Carts.Where(cart=>cart.Cart_custmer_id==int.Parse(user)).ToList();
+                var  carts=db.Carts.Where(cart=>cart.Cart_custmer_id==int.Parse(user)).ToList();
                 foreach(var cart in carts)
                 {
                     var res=db.Products.FirstOrDefault(p=>p.product_Id==cart.Cart_product_id);
