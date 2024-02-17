@@ -8,8 +8,6 @@ namespace ElglalyStore.Controllers
 {
 	public class CartController : Controller
 	{
-		Appdbcontext db=new Appdbcontext();
-
         
         public IActionResult Index()
 		{
@@ -22,18 +20,18 @@ namespace ElglalyStore.Controllers
                 List<CartModelView> users = new List<CartModelView>();
                 decimal price_before_Coupon = 0;
 
-                var  carts=db.Carts.Where(cart=>cart.Cart_custmer_id==int.Parse(user)).ToList();
+                var  carts= Appdbcontext._Instance.Carts.Where(cart=>cart.Cart_custmer_id==int.Parse(user)).ToList();
                 foreach(var cart in carts)
                 {
-                    var res=db.Products.FirstOrDefault(p=>p.product_Id==cart.Cart_product_id);
+                    var res=Appdbcontext._Instance.Products.FirstOrDefault(p=>p.product_Id==cart.Cart_product_id);
                     users.Add(new CartModelView
                     {
-                        Name = res.product_name,
-                        Image = res.product_image,
-                        Price = res.product_price,
+                        Name = res?.product_name?? "",
+                        Image = res?.product_image?? "",
+                        Price = res?.product_price?? 0,
                         Quantity = cart.Cart_quantity,
-                        Total_Price = res.product_price * cart.Cart_quantity,
-                        Product_id=res.product_Id,
+                        Total_Price = res?.product_price?? 0 * cart.Cart_quantity,
+                        Product_id=res!.product_Id!,
                        
 
                     });
@@ -54,7 +52,7 @@ namespace ElglalyStore.Controllers
 
         public IActionResult AddItem(int id)
         {
-            var res=db.Carts.FirstOrDefault(c=>c.Cart_product_id==id);
+            var res=Appdbcontext._Instance.Carts.FirstOrDefault(c=>c.Cart_product_id==id);
             if(res == null)
             {
                 var userIdCookie = Request.Cookies["UserInfo"];
@@ -70,12 +68,12 @@ namespace ElglalyStore.Controllers
                         Cart_quantity = 1,
                     };
 
-                    db.Carts.Add(cart);
+                    Appdbcontext._Instance.Carts.Add(cart);
                     
 
                     try
                     {
-                        db.SaveChanges();
+                        Appdbcontext._Instance.SaveChanges();
                     }
                     catch (Exception ex)
                     {
@@ -85,7 +83,7 @@ namespace ElglalyStore.Controllers
 
 
             }
-            int id_category = db.Products.FirstOrDefault(c => c.product_Id == res.Cart_product_id).product_category_id;
+            int id_category = Appdbcontext._Instance.Products.FirstOrDefault(c => c.product_Id == res!.Cart_product_id)!.product_category_id;
             return RedirectToAction("Details", "Category", new { id = id_category });
 
         }
@@ -95,22 +93,22 @@ namespace ElglalyStore.Controllers
             decimal price_before = 0;
             if (TempData.ContainsKey("price"))
             {
-                price_before = decimal.Parse(TempData.Peek("price").ToString());
+                price_before = decimal.Parse(TempData.Peek("price")?.ToString()?? "0");
             }
 
             var user = Request.Cookies["UserInfo"];
-            decimal Price = db.Products.FirstOrDefault(c => c.product_Id == id).product_price;
+            decimal Price = Appdbcontext._Instance.Products.FirstOrDefault(c => c.product_Id == id)!.product_price;
           
-            var res = db.Carts.FirstOrDefault(c => c.Cart_product_id == id &&
-            c.Cart_custmer_id == int.Parse(user));
+            var res = Appdbcontext._Instance.Carts.FirstOrDefault(c => c.Cart_product_id == id &&
+            c.Cart_custmer_id == int.Parse(user!));
                 if (res != null)
                { 
 
                 price_before -= Price * res.Cart_quantity;
                 res.Cart_quantity= Quantity;
                 Price = Price * Quantity;
-                db.Carts.Update(res);
-                db.SaveChanges();
+                Appdbcontext._Instance.Carts.Update(res);
+                Appdbcontext._Instance.SaveChanges();
                 }
               
             
@@ -124,9 +122,9 @@ namespace ElglalyStore.Controllers
         public IActionResult Delete(int id)
         {
             var use = Request.Cookies["UserInfo"];
-            var carts = db.Carts.Where(cart => cart.Cart_custmer_id == int.Parse(use) && id==cart.Cart_product_id).FirstOrDefault();
-            db.Carts.Remove(carts);
-            db.SaveChanges();
+            var carts = Appdbcontext._Instance.Carts.Where(cart => cart.Cart_custmer_id == int.Parse(use!) && id==cart.Cart_product_id).FirstOrDefault();
+            Appdbcontext._Instance.Carts.Remove(carts!);
+            Appdbcontext._Instance.SaveChanges();
             return RedirectToAction("index");
         }
 
@@ -140,14 +138,14 @@ namespace ElglalyStore.Controllers
             {
                 if (TempData.ContainsKey("price"))
                 {
-                    TempData["price"]= (decimal.Parse(TempData.Peek("price").ToString())/2).ToString();
+                    TempData["price"]= (decimal.Parse(TempData.Peek("price")?.ToString() ?? "0")/2).ToString();
                 }
 
-                return Json(new { message = "Coupon Has Applied", price = decimal.Parse(TempData.Peek("price").ToString())});
+                return Json(new { message = "Coupon Has Applied", price = decimal.Parse(TempData.Peek("price")?.ToString() ?? "0")});
             }
             else
             {
-                return Json(new { message = "Coupon Does Not Correct", price = decimal.Parse(TempData.Peek("price").ToString()) });
+                return Json(new { message = "Coupon Does Not Correct", price = decimal.Parse(TempData.Peek("price")?.ToString() ?? "0") });
 
             }
         }

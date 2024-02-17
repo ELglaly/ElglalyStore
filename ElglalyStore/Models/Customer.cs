@@ -9,7 +9,7 @@ namespace ElglalyStore.Models
         public Customer() {
 
                  Birth_date=DateTime.Now;
-                }
+             }
         [Key]
         public int Customer_Id { get; set; }
 
@@ -18,7 +18,7 @@ namespace ElglalyStore.Models
         [MinLength(3, ErrorMessage = "at least 3 charachters")]
         [MaxLength(20,ErrorMessage ="maximam 20 charachters")]
         [Display(Name = "First Name")]
-        public string Fisrt_name { get; set; }
+        public string? Fisrt_name { get; set; }
 
 
 
@@ -26,14 +26,14 @@ namespace ElglalyStore.Models
         [MinLength(3, ErrorMessage = "At least 3 charachters")]
         [MaxLength(20, ErrorMessage = "maximam 20 charachters")]
         [Display(Name = "Last Name")]
-        public string Last_name { get; set; }
+        public string? Last_name { get; set; }
 
 
 
         [DataType(DataType.EmailAddress)]
         [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",ErrorMessage = "Invalid email address.")]
         [Display(Name = "Email Address")]
-        public  string Email {  get; set;}
+        public  string? Email {  get; set;}
 
 
 
@@ -42,7 +42,7 @@ namespace ElglalyStore.Models
         [MaxLength(11)]
         [MinLength(11,ErrorMessage = "Must Be 11 Digits")]
         [Display(Name = "Phone Number")]
-        public string Phone_number { get; set;}
+        public string? Phone_number { get; set;}
 
 
 
@@ -57,7 +57,7 @@ namespace ElglalyStore.Models
         [DataType(DataType.Password)]
         [Column(TypeName ="nvarchar(100)")]
         [MaxLength(100,ErrorMessage = "Maximam 100 charachters")]
-         public string Password { get; set;}
+         public string? Password { get; set;}
 
 
         [Required(ErrorMessage ="Enter Birth Date")]

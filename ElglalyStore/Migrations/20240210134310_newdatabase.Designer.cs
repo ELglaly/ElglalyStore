@@ -13,7 +13,7 @@ namespace ElglalyStore.Migrations
 {
     [DbContext(typeof(Appdbcontext))]
     [Migration("20240210134310_newdatabase")]
-    partial class newdatabase
+    partial class Newdatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

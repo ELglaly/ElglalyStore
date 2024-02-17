@@ -19,9 +19,9 @@ namespace ElglalyStore.Models
         public int Cart_product_id { get; set; }
 
         [ForeignKey("Cart_custmer_id")]
-        public Customer customer { get; set; }
+        public Customer? customer { get; set; }
 
         [ForeignKey("Cart_product_id")]
-        public Product product { get; set; }
+        public Product? product { get; set; }
     }
 }

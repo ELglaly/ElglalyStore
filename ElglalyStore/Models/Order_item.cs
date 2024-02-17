@@ -27,8 +27,8 @@ namespace ElglalyStore.Models
         public int order_order_item { get; set; }
 
         [Required]
-        public Order order { get; set; }
+        public Order? order { get; set; }
         [Required]
-        public Product product { get; set; }    
+        public Product? product { get; set; }    
     }
 }

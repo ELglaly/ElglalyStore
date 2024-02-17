@@ -5,7 +5,7 @@ namespace ElglalyStore.Controllers
 {
     public class ProductController : Controller
     {
-        Appdbcontext db = new Appdbcontext();
+      
         public IActionResult Index()
         {
             return View();
@@ -13,7 +13,7 @@ namespace ElglalyStore.Controllers
 
         public IActionResult supermarket(int id)
         {
-            return View(db.Products.Where(p => p.product_category_id == id).FirstOrDefault().ToString());
+            return View(Appdbcontext._Instance.Products.Where(p => p.product_category_id == id).ToString());
         }
 
 

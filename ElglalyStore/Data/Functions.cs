@@ -6,12 +6,14 @@ namespace ElglalyStore.Data
 {
     public class Functions
     {
-        public static void Send_Email(string email, Customer customer)
+
+		
+		public static void Send_Email(string email, Customer customer)
         {
 
             if (!string.IsNullOrWhiteSpace(email))
             {
-                Appdbcontext db = new Appdbcontext();
+             
                 Random random = new Random();
                 MailMessage mailMessage = new MailMessage();
                 SmtpClient smtp = new SmtpClient();
@@ -39,15 +41,10 @@ namespace ElglalyStore.Data
 
                 smtp.Credentials = new NetworkCredential(yourGmailAddress, yourAppSpecificPassword);
 
-                try
-
-                {
+               
                     smtp.Send(mailMessage);
-                }
-                catch (Exception ex)
-                {
-
-                }
+                
+               
 
 
             }

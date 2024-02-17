@@ -14,7 +14,6 @@ namespace ElglalyStore.Controllers
     public class CustomerController : Controller
     {
        
-         Appdbcontext db=new Appdbcontext();
         public IActionResult Index()
         {
             return View();
@@ -33,13 +32,13 @@ namespace ElglalyStore.Controllers
 
             if (ModelState.IsValid)
             {
-                if (db.Customers.Where(p=>p.Phone_number==customer.Phone_number).FirstOrDefault() != null)
+                if (Appdbcontext._Instance.Customers.Where(p=>p.Phone_number==customer.Phone_number).FirstOrDefault() != null)
 
                 {
                     ModelState.AddModelError("phone_number", "This Phone Number is already registered.");
                         return View("Registeration",customer);
                 }
-                else if (db.Customers.Where(p => p.Email == customer.Email).FirstOrDefault() != null)
+                else if (Appdbcontext._Instance.Customers.Where(p => p.Email == customer.Email).FirstOrDefault() != null)
 
                 {
 
@@ -48,8 +47,8 @@ namespace ElglalyStore.Controllers
                 }
                 else
                 {
-                    db.Customers.Add(customer);
-                    db.SaveChanges();
+                    Appdbcontext._Instance.Customers.Add(customer);
+                    Appdbcontext._Instance.SaveChanges();
                     
                     return RedirectToAction("Login");
                 }
@@ -75,7 +74,7 @@ namespace ElglalyStore.Controllers
             var res=new Customer();
             if (ModelState.IsValid)
             {
-                res=db.Customers.FirstOrDefault(c=>c.Email == email);
+                res=Appdbcontext._Instance.Customers.FirstOrDefault(c=>c.Email == email);
                 if(res != null)
                 {
                     if(res.Password==password)
@@ -118,7 +117,7 @@ namespace ElglalyStore.Controllers
             var user = Request.Cookies["UserInfo"];
             if (user != null)
             {
-                    return View(db.Customers.FirstOrDefault(c=>c.Customer_Id==int.Parse(user)));
+                    return View(Appdbcontext._Instance.Customers.FirstOrDefault(c=>c.Customer_Id==int.Parse(user)));
             }
             return RedirectToAction("Index","Home");
         }
@@ -127,7 +126,8 @@ namespace ElglalyStore.Controllers
         {
 
 
-            Customer cust=db.Customers.FirstOrDefault(c=>c.Customer_Id==id);
+            Customer cust=Appdbcontext._Instance.Customers.FirstOrDefault(c=>c.Customer_Id==id)!;
+
             return PartialView("_EditProfilePartial", cust);
         }
 
@@ -137,14 +137,14 @@ namespace ElglalyStore.Controllers
              if (ModelState.IsValid)
             {
 
-                Customer cut = db.Customers.FirstOrDefault(c => c.Customer_Id == NewCut.Customer_Id);
+                Customer cut = Appdbcontext._Instance.Customers.FirstOrDefault(c => c.Customer_Id == NewCut!.Customer_Id)!;
 
                 cut.Fisrt_name = NewCut.Fisrt_name;
                 cut.Address = NewCut.Address;
                 cut.Phone_number = NewCut.Phone_number;
 
-                db.Customers.Update(cut);
-                db.SaveChanges();
+                Appdbcontext._Instance.Customers.Update(cut);
+                Appdbcontext._Instance.SaveChanges();
                 return PartialView("_EditProfilePartial", cut);
 
             }

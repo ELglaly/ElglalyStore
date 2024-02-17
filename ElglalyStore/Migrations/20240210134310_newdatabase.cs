@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ElglalyStore.Migrations
 {
     /// <inheritdoc />
-    public partial class newdatabase : Migration
+    public partial class Newdatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

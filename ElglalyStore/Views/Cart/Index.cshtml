@@ -23,7 +23,7 @@
     <style>
         .container {
             width: 80%;
-            margin: 100 px;
+            margin: 100px;
             min-width:50px;
             padding: 20px;
         }
@@ -132,7 +132,7 @@
                                         <span class="text-black">Total</span>
                                     </div>
                                     <div class="col-md-6 text-right">
-                                            <strong id="price_before" class="text-black">$@decimal.Parse(TempData.Peek("price").ToString())</strong>
+                                            <strong id="price_before" class="text-black">$@decimal.Parse(TempData.Peek("price")?.ToString()?? "0")</strong>
                                     </div>
                                 </div>
 
